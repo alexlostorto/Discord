@@ -14,6 +14,8 @@
 
 const AUTHORIZATION = '';
 const CHANNEL_CODE = '';
+const WAIT = 8000;  // Time to wait between each POST request
+
 
 function infiniteType() {
     fetch(`https://discord.com/api/v9/channels/${CHANNEL_CODE}/typing`, {
@@ -36,5 +38,7 @@ function infiniteType() {
         "credentials": "include"
     });
 
-    setTimeout(function () {infiniteType();}, 8000);
+    setTimeout(function () {infiniteType();}, WAIT);
 }
+
+infiniteType()

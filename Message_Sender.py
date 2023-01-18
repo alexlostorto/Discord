@@ -13,11 +13,13 @@
 # All code is mine and subject to the MIT License
 
 import requests
-import multiprocessing as mp
+import time
 
 
 AUTHORIZATION = ''
 CHANNEL_CODE = ''
+NUMBER_OF_MESSAGES = 100
+WAIT = 5000  # Time to wait in milliseconds
 
 header = {
     'authorization': AUTHORIZATION
@@ -25,7 +27,7 @@ header = {
 
 
 def main():
-    for i in range(100):
+    for i in range(NUMBER_OF_MESSAGES):
         payload = {
             'content': i
         }
@@ -33,7 +35,9 @@ def main():
         r = requests.post(
             f'https://discord.com/api/v9/channels/{CHANNEL_CODE}/messages', data=payload, headers=header)
 
-        print(r.status_code)
+        print(r.status_code)  # 200 means success
+
+        time.sleep(WAIT)
 
 
 if __name__ == "__main__":
